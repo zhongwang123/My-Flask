@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %} Home {% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+
+</head>
+
+<body>
+    <div class="container">
+    
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        {{ message }}
+    </div>
+    {% endfor %}
+    
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">WebSiteName</a>
+            </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">Page 1</a></li>
+            <li><a href="#">Page 2</a></li>
+            <li><a href="#">Page 3</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            {% if current_user.is_authenticated %}
+            <li><a href="{{ url_for('auth.logout') }}">Sign Out</a></li>
+            {% else %}
+            <li><a href="{{ url_for('auth.login') }}">Sign In</a></li>
+            {% endif %}
+        </ul>
+        </div>
+    </nav>
+        <div class="jumbotron">
+            <h1> <a href="{{ url_for('main.home') }}"> My Blog </a></h1>
+            <p> Welcome to My Blog </p>
+        </div>
+
+    {% block body %} {% endblock %}
+        
+
+        <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}">
+
+
+        </script>
+    </div>
+
+</body>
+
+</html>

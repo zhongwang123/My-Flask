@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block body %}
+<div class="container">
+    {{ wtf.quick_form(form) }}
+    <br>
+    <p>New user? <a href="{{ url_for('auth.register') }}">Click here to register</a>.</p>
+</div>
+{% endblock %}
